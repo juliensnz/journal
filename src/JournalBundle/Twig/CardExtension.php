@@ -47,7 +47,7 @@ class CardExtension extends \Twig_Extension
      *
      * @return string
      */
-    public function renderCards(\Twig_Environment $twig, array $context, $type, $single = false)
+    public function renderCards(\Twig_Environment $twig, array $context, $type, $single = true)
     {
         $cards = $this->getCards($type);
         //If we only want a single card we pick one of them randomly
@@ -78,9 +78,11 @@ class CardExtension extends \Twig_Extension
                 $content .= sprintf("<!-- Start card template: %s -->\n", $card->getTemplate());
             }
 
+            $cardContext = array_replace_recursive($cardContext, $card->getParameters($context));
+
             $content .= $twig->render(
                 $card->getTemplate($context),
-                array_replace_recursive($cardContext, $card->getParameters($context))
+                $cardContext
             );
 
             if (true === $this->debug) {

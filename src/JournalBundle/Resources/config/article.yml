@@ -12,12 +12,12 @@ services:
         tags:
             - { name: journal.card, type: journal.article.learn, position: 100 }
 
-    journal.card.article.jenkins:
-        parent: journal.card.jenkins
-        arguments:
-            - %journal.card.article.jenkins.template%
-        tags:
-            - { name: journal.card, type: journal.article.work, position: 100 }
+    # journal.card.article.jenkins:
+    #     parent: journal.card.jenkins
+    #     arguments:
+    #         - %journal.card.article.jenkins.template%
+    #     tags:
+    #         - { name: journal.card, type: journal.article.work, position: 100 }
 
     journal.card.article.instagram:
         parent: journal.card.instagram
