@@ -1,0 +1,12 @@
+parameters:
+    journal.twig.card_extension.class: JournalBundle\Twig\CardExtension
+
+services:
+    # Twig extensions
+    journal.twig.card_extension:
+        class: %journal.twig.card_extension.class%
+        arguments:
+            - '@journal.card.registry'
+            - %kernel.debug%
+        tags:
+            - { name: twig.extension }

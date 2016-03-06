@@ -1,0 +1,30 @@
+parameters:
+    journal.card.registry.class:  JournalBundle\Card\CardRegistry
+    journal.card.base.class:      JournalBundle\Card\BaseCard
+    journal.card.header.class:    JournalBundle\Card\HeaderCard
+    journal.card.wikipedia.class: JournalBundle\Card\WikipediaCard
+    journal.card.flickr.class:    JournalBundle\Card\FlickrCard
+    journal.card.instagram.class: JournalBundle\Card\InstagramCard
+    journal.card.jenkins.class:   JournalBundle\Card\JenkinsCard
+
+services:
+    journal.card.registry:
+        class: %journal.card.registry.class%
+
+    journal.card.base:
+        class: %journal.card.base.class%
+
+    journal.card.header:
+        class: %journal.card.header.class%
+
+    journal.card.wikipedia:
+        class: %journal.card.wikipedia.class%
+
+    journal.card.flickr:
+        class: %journal.card.flickr.class%
+
+    journal.card.instagram:
+        class: %journal.card.instagram.class%
+
+    journal.card.jenkins:
+        class: %journal.card.jenkins.class%

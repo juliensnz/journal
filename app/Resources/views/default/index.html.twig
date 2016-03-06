@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="header">
+        {{ cards('journal.header', true) }}
+    </div>
+    <div class="articles">
+        {{ cards('journal.article.learn', true) }}
+        {{ cards('journal.article.picture', true) }}
+        {{ cards('journal.article.work', true) }}
+    </div>
+    <div class="footer">
+        {{ cards('journal.footer', true) }}
+    </div>
+{% endblock %}

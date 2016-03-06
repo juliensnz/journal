@@ -1,0 +1,10 @@
+parameters:
+    journal.card.header.thin.template: 'JournalBundle:Card:header/thin.html.twig'
+
+services:
+    journal.card.header.thin:
+        parent: journal.card.header
+        arguments:
+            - %journal.card.header.thin.template%
+        tags:
+            - { name: journal.card, type: journal.header, position: 100 }

@@ -1,0 +1,35 @@
+<div class="header-thin">
+    <span class="top-split">{{ date|date("d.m.Y") }}</span>
+    <h1>My Journal</h1>
+    <span class="thin-split"></span>
+    <span class="thin-split"></span>
+    <span class="subline">{{ name }} - {{ location }} - {{ company }}</span>
+    <span class="thin-split"></span>
+    <span class="thin-split"></span>
+</div>
+
+<style>
+.header-thin .top-split {
+    height: 40px;
+    background: #333;
+    font-size: 24px;
+    display: block;
+    color: white;
+    font-family: "Helvetica Neue";
+    font-weight: 100;
+    line-height: 40px;
+    padding-left: 10px;
+    border-sizing: border-box;
+}
+
+.header-thin h1 {
+    text-transform: uppercase;
+    font-family: 'Lato', sans-serif;
+    font-weight: 200;
+    font-style: italic;
+    font-size: 75px;
+    text-align: center;
+    margin: 0px;
+    letter-spacing: -6px;
+}
+</style>
