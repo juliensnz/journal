@@ -15,7 +15,7 @@ class SudokuCard extends BaseCard
     public function getParameters(array $context = [])
     {
         $sudoku = new Sudoku();
-        $sudoku->generateUncompleteGrid(1);
+        $sudoku->generateUncompleteGrid(0.3);
 
         return array_replace_recursive(
             $this->parameters,
