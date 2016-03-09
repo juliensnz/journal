@@ -1,0 +1,39 @@
+<div class="card sudoku">
+    <h2>Game time !</h2>
+    <table class="sudoku-grid">
+        <tr>
+        {% for index, value in grid %}
+            <td>{{ value }}</td>{% if index % 9 == 8 %}</tr><tr>{% endif %}
+        {% endfor %}
+        </tr>
+    </table>
+</div>
+<style>
+    .card.sudoku h2 {
+        font-family: 'Vampiro One', cursive;
+        text-align: center;
+        margin: 5px 0;
+        font-size: 35px;
+    }
+
+    .card.sudoku  .sudoku-grid {
+        border-collapse: collapse;
+        width: 100%;
+        border: 3px solid black;
+    }
+
+    .card.sudoku  .sudoku-grid td {
+        border: 1px solid black;
+        width: 40px;
+        height: 40px;
+        text-align: center;
+    }
+
+    .card.sudoku  .sudoku-grid td:nth-child(3n) {
+        border-right: 3px solid black;
+    }
+
+    .card.sudoku .sudoku-grid tr:nth-child(3n) {
+        border-bottom: 3px solid black;
+    }
+</style>

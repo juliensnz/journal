@@ -2,6 +2,8 @@
 
 namespace JournalBundle\Card;
 
+use Application\Domain\CardInterface;
+
 /**
  * Basic card
  */

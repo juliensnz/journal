@@ -2,7 +2,7 @@
 
 namespace JournalBundle\Twig;
 
-use JournalBundle\Card\CardRegistry;
+use Application\Domain\CardRegistry;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 
 /**

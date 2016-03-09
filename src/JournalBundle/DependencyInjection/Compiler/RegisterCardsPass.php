@@ -16,7 +16,7 @@ class RegisterCardsPass implements CompilerPassInterface
     const DEFAULT_POSITION = 100;
 
     /** @staticvar string The registry id */
-    const REGISTRY_ID = 'journal.card.registry';
+    const REGISTRY_ID = 'app.card.registry';
 
     /** @staticvar string */
     const CARD_TAG = 'journal.card';

@@ -1,6 +1,6 @@
 <?php
 
-namespace JournalBundle\Card;
+namespace Application\Domain;
 
 /**
  * Registry of card

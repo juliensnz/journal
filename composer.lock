@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "ee5e4655bef72b7f8070da33254e586f",
-    "content-hash": "914b6762689210332009519605cbe828",
+    "hash": "be42dac784829ffab9bc38ae5c97e325",
+    "content-hash": "6aef2eaddf3a5cb9c0a487935f926e15",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -663,6 +663,22 @@
                 "parameters management"
             ],
             "time": "2015-11-10 17:04:01"
+        },
+        {
+            "name": "juliensnz/Sudoku",
+            "version": "master",
+            "source": {
+                "type": "git",
+                "url": "https://gist.github.com/96faca22cc32657b11d8.git",
+                "reference": "master"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": {
+                    "Sudoku\\": "."
+                }
+            },
+            "time": "2016-03-08 20:28:22"
         },
         {
             "name": "kriswallsmith/assetic",
@@ -1528,7 +1544,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "juliensnz/sudoku": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

@@ -6,7 +6,7 @@ services:
     journal.twig.card_extension:
         class: %journal.twig.card_extension.class%
         arguments:
-            - '@journal.card.registry'
+            - '@app.card.registry'
             - %kernel.debug%
         tags:
             - { name: twig.extension }
