@@ -26,6 +26,24 @@ class CardRegistry
         }
     }
 
+    public function getCards()
+    {
+        $selection = [];
+
+        foreach ($this->cards as $type => $card) {
+            $position = array_rand($card);
+            $card = $card[$position];
+
+            while (isset($selection[$position])) {
+                $position++;
+            }
+
+            $selection[$position] = $card;
+        }
+
+        return $selection;
+    }
+
     /**
      * Get the view cards for the given type
      *

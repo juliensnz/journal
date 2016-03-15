@@ -1,0 +1,12 @@
+services:
+    journal.renderer.html_card:
+        class: JournalBundle\Renderer\HtmlCardRenderer
+        arguments:
+            - '@templating'
+
+    journal.renderer.html_journal:
+        class: JournalBundle\Renderer\HtmlJournalRenderer
+        arguments:
+            - '@templating'
+            - '@journal.renderer.html_card'
+            - 'default/index.html.twig'

@@ -18,10 +18,7 @@ class JournalExtension extends Extension
     public function load(array $configs, ContainerBuilder $container)
     {
         $loader = new YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
-        $loader->load('article.yml');
         $loader->load('card.yml');
-        $loader->load('footer.yml');
-        $loader->load('header.yml');
-        $loader->load('twig.yml');
+        $loader->load('renderer.yml');
     }
 }

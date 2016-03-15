@@ -1,27 +1,45 @@
 services:
-    app.card.registry:
+    journal.registry.card:
         class: Application\Domain\CardRegistry
 
-    journal.card.base:
-        class: JournalBundle\Card\BaseCard
-
-    journal.card.header:
+    journal.card.header.thin:
         class: JournalBundle\Card\HeaderCard
+        arguments:
+            - 'JournalBundle:Card:header/thin.html.twig'
+        tags:
+            - { name: journal.card, type: journal.header, position: 15 }
 
-    journal.card.wikipedia:
-        class: JournalBundle\Card\WikipediaCard
-
-    journal.card.flickr:
-        class: JournalBundle\Card\FlickrCard
-
-    journal.card.instagram:
-        class: JournalBundle\Card\InstagramCard
-
-    journal.card.jenkins:
-        class: JournalBundle\Card\JenkinsCard
-
-    journal.card.sudoku:
-        class: JournalBundle\Card\SudokuCard
-
-    journal.card.quote:
+    journal.card.article.quote:
         class: JournalBundle\Card\QuoteCard
+        arguments:
+            - 'JournalBundle:Card:article/quote.html.twig'
+        tags:
+            - { name: journal.card, type: journal.article.learn, position: 20 }
+
+    journal.card.article.weather:
+        class: JournalBundle\Card\WeatherCard
+        arguments:
+            - 'JournalBundle:Card:article/weather.html.twig'
+        tags:
+            - { name: journal.card, type: journal.article.weather, position: 30 }
+
+    journal.card.article.sudoku:
+        class: JournalBundle\Card\SudokuCard
+        arguments:
+            - 'JournalBundle:Card:article/sudoku.html.twig'
+        tags:
+            - { name: journal.card, type: journal.article.game, position: 40 }
+
+    journal.card.article.instagram:
+        class: JournalBundle\Card\InstagramCard
+        arguments:
+            - 'JournalBundle:Card:article/instagram.html.twig'
+        tags:
+            - { name: journal.card, type: journal.article.picture, position: 50 }
+
+    journal.card.article.flickr:
+        class: JournalBundle\Card\FlickrCard
+        arguments:
+            - 'JournalBundle:Card:article/flickr.html.twig'
+        tags:
+            - { name: journal.card, type: journal.article.picture, position: 50 }

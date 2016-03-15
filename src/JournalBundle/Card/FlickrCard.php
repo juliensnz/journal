@@ -24,10 +24,10 @@ class FlickrCard extends BaseCard
     /**
      * {@inheritdoc}
      */
-    public function getParameters(array $context = [])
+    public function getData(array $context = [])
     {
         return array_replace_recursive(
-            $this->parameters,
+            $this->data,
             $this->getPictureContent('ossdoubleonesix')
         );
     }

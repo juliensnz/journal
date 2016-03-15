@@ -12,13 +12,13 @@ class SudokuCard extends BaseCard
     /**
      * {@inheritdoc}
      */
-    public function getParameters(array $context = [])
+    public function getData(array $context = [])
     {
         $sudoku = new Sudoku();
-        $sudoku->generateUncompleteGrid(0.3);
+        $sudoku->generateUncompleteGrid(0.7);
 
         return array_replace_recursive(
-            $this->parameters,
+            $this->data,
             [
                 'grid' => $sudoku->getGrid()
             ]

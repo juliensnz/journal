@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends Controller
 {
@@ -12,6 +13,11 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('default/index.html.twig');
+        $journalRenderer = $this->container->get('journal.renderer.html_journal');
+        $cardRegistry = $this->container->get('journal.registry.card');
+
+        error_log($journalRenderer->render($cardRegistry->getCards()));
+
+        return new Response($journalRenderer->render($cardRegistry->getCards()));
     }
 }

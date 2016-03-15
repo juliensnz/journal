@@ -13,16 +13,16 @@ class BaseCard implements CardInterface
     protected $template;
 
     /** @var array */
-    protected $parameters = [];
+    protected $data = [];
 
     /**
      * @param string $template
-     * @param array  $parameters
+     * @param array  $data
      */
-    public function __construct($template, array $parameters = [])
+    public function __construct($template, array $data = [])
     {
-        $this->template   = $template;
-        $this->parameters = $parameters;
+        $this->template = $template;
+        $this->data     = $data;
     }
 
     /**
@@ -36,9 +36,9 @@ class BaseCard implements CardInterface
     /**
      * {@inheritdoc}
      */
-    public function getParameters(array $context = [])
+    public function getData(array $context = [])
     {
-        return $this->parameters;
+        return $this->data;
     }
 
     /**

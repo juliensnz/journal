@@ -1,0 +1,43 @@
+<table class="card weather">
+    <tr>
+    {% for index,forecast in weather %}
+        <td>
+            <span class="temp">{{ forecast.main.temp|round() }} C°</span>
+            <span class="description">{{ forecast.weather[0].description }}</span>
+        </td>
+    {% endfor %}
+    </tr>
+</table>
+
+<style>
+
+table.card.weather {
+    width: 344px;
+    margin: 10px 20px;
+    box-sizing: border-box;
+}
+
+.card.weather td {
+    padding: 5px;
+}
+
+.card.weather td span {
+    display: block;
+    text-align: center;
+    margin: 2px 0;
+}
+
+.card.weather .hour {
+    font-size: 20px;
+}
+
+.card.weather .temp {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.card.weather .description {
+    font-size: 16px;
+    text-transform: capitalize;
+}
+</style>

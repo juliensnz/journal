@@ -14,12 +14,16 @@ class QuoteCard extends BaseCard
     /**
      * {@inheritdoc}
      */
-    public function getParameters(array $context = [])
+    public function getData(array $context = [])
     {
         $client = new Client();
-        $quote = json_decode($client->get(static::API_URL)->getBody(), true);
+
+        do {
+            $quote = json_decode($client->get(static::API_URL)->getBody(), true);
+        } while (null === $quote);
+
         return array_replace_recursive(
-            $this->parameters,
+            $this->data,
             [
                 'quote' => $quote
             ]

@@ -17,16 +17,16 @@ interface CardInterface
     /**
      * Get additional template parameters
      *
-     * @param array $context The twig context
+     * @param array $context
      *
      * @return array
      */
-    public function getParameters(array $context = []);
+    public function getData(array $context = []);
 
     /**
      * Indicates whether the view element should be displayed in the given context
      *
-     * @param array $context The twig context
+     * @param array $context
      *
      * @return boolean
      */
