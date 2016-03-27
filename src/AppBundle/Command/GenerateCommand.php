@@ -28,12 +28,30 @@ class GenerateCommand extends ContainerAwareCommand
     {
         $output->writeln('Journal generation start');
 
-        exec('');
+        $edition = time();
+        $uri = sprintf('%s/journals/%s.png', $this->getContainer()->getParameter('kernel.root_dir'), $edition);
+        $output->writeln($uri);
+
+        $rasterizeCommand = sprintf(
+            'phantomjs %s/../rasterize.js http://journal.dev %s',
+            $this->getContainer()->getParameter('kernel.root_dir'),
+            $uri
+        );
+        exec($rasterizeCommand);
+
+        $convertCommand = sprintf(
+            'convert %s -monochrome %s',
+            $uri,
+            $uri
+        );
+        exec($convertCommand);
+
+        exec(sprintf('open %s', $uri));
 
         if ($input->getOption('dry-run')) {
-            $text = strtoupper($text);
+
         }
 
-        $output->writeln($text);
+        $output->writeln('Finished !');
     }
 }

@@ -18,7 +18,7 @@ if (system.args.length < 3 || system.args.length > 5) {
             phantom.exit(1);
         } else {
             window.setTimeout(function () {
-                page.render(output, {format: 'jpeg', quality: '100'});
+                page.render(output, {format: 'png'});
                 phantom.exit();
             }, 200);
         }
