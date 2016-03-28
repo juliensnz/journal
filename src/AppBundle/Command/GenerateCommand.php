@@ -33,7 +33,7 @@ class GenerateCommand extends ContainerAwareCommand
         $output->writeln($uri);
 
         $rasterizeCommand = sprintf(
-            'phantomjs %s/../rasterize.js http://journal.dev %s',
+            'phantomjs %s/../rasterize.js http://localhost %s',
             $this->getContainer()->getParameter('kernel.root_dir'),
             $uri
         );
@@ -46,7 +46,11 @@ class GenerateCommand extends ContainerAwareCommand
         );
         exec($convertCommand);
 
-        exec(sprintf('open %s', $uri));
+        exec(sprintf(
+            'python %s/Resources/python/print.py %s',
+            $this->getContainer()->getParameter('kernel.root_dir'),
+            $uri
+        ));
 
         if ($input->getOption('dry-run')) {
 
