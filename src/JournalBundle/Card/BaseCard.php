@@ -19,10 +19,11 @@ class BaseCard implements CardInterface
      * @param string $template
      * @param array  $data
      */
-    public function __construct($template, array $data = [])
+    public function __construct($template, array $properties = [], array $data = [])
     {
-        $this->template = $template;
-        $this->data     = $data;
+        $this->template   = $template;
+        $this->properties = $properties;
+        $this->data       = $data;
     }
 
     /**
@@ -47,5 +48,13 @@ class BaseCard implements CardInterface
     public function isVisible(array $context = [])
     {
         return true;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getProperties(array $context = [])
+    {
+        return $this->properties;
     }
 }

@@ -31,4 +31,13 @@ interface CardInterface
      * @return boolean
      */
     public function isVisible(array $context = []);
+
+    /**
+     * Provide properties of a card
+     *
+     * @param array $context
+     *
+     * @return boolean
+     */
+    public function getProperties(array $context = []);
 }
