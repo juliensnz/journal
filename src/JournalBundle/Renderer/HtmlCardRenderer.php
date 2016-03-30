@@ -22,8 +22,8 @@ class HtmlCardRenderer implements CardRendererInterface
     /**
      * {@inheritdoc}
      */
-    public function render(CardInterface $card)
+    public function render(CardInterface $card, array $options = [])
     {
-        return $this->templating->render($card->getTemplate(), $card->getData());
+        return $this->templating->render($card->getTemplate(), $card->getData($options));
     }
 }

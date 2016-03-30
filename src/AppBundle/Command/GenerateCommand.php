@@ -15,6 +15,11 @@ class GenerateCommand extends ContainerAwareCommand
         $this
             ->setName('journal:print')
             ->setDescription('Print a journal edition')
+            ->addArgument(
+                'id',
+                InputArgument::REQUIRED,
+                'Journal id'
+            )
             ->addOption(
                 'dry-run',
                 null,
@@ -33,8 +38,9 @@ class GenerateCommand extends ContainerAwareCommand
         $output->writeln($uri);
 
         $rasterizeCommand = sprintf(
-            'phantomjs %s/../rasterize.js http://localhost %s',
+            'phantomjs %s/../rasterize.js http://localhost/journal/%s/print %s',
             $this->getContainer()->getParameter('kernel.root_dir'),
+            $input->getArgument('id'),
             $uri
         );
         exec($rasterizeCommand);

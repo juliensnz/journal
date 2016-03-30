@@ -8,5 +8,6 @@ services:
         class: JournalBundle\Renderer\HtmlJournalRenderer
         arguments:
             - '@templating'
+            - '@journal.registry.card'
             - '@journal.renderer.html_card'
             - 'default/index.html.twig'

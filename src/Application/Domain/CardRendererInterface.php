@@ -12,5 +12,5 @@ interface CardRendererInterface
      *
      * @return string
      */
-    public function render(CardInterface $card);
+    public function render(CardInterface $card, array $options = []);
 }

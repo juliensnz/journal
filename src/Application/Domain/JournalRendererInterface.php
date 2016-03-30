@@ -12,5 +12,5 @@ interface JournalRendererInterface
      *
      * @return string
      */
-    public function render(array $cards);
+    public function render(array $options = []);
 }

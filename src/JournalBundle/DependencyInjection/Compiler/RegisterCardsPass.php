@@ -34,7 +34,7 @@ class RegisterCardsPass implements CompilerPassInterface
 
         foreach ($container->findTaggedServiceIds(static::CARD_TAG) as $serviceId => $tags) {
             foreach ($tags as $tag) {
-                $this->registerCard($registryDefinition, $serviceId, $tag);
+                $this->registerCard($registryDefinition, $serviceId);
             }
         }
     }
@@ -44,20 +44,14 @@ class RegisterCardsPass implements CompilerPassInterface
      *
      * @param Definition $registryDefinition
      * @param string     $serviceId
-     * @param array      $tag
      */
-    protected function registerCard($registryDefinition, $serviceId, $tag)
+    protected function registerCard($registryDefinition, $serviceId)
     {
-        if (!isset($tag['type'])) {
-            throw new \LogicException(sprintf('No type provided for the "%s" card', $serviceId));
-        }
-        $position = isset($tag['position']) ? $tag['position'] : static::DEFAULT_POSITION;
         $registryDefinition->addMethodCall(
             'add',
             [
                 new Reference($serviceId),
-                $tag['type'],
-                $position
+                $serviceId,
             ]
         );
     }
