@@ -24,7 +24,7 @@ class RenderController extends Controller
         $journalRenderer = $this->container->get('journal.renderer.html_journal');
         $cardRegistry = $this->container->get('journal.registry.card');
 
-        return new Response($journalRenderer->render($config['cards']));
+        return new Response($journalRenderer->render($config));
     }
 
     /**

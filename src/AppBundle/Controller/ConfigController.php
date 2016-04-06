@@ -31,12 +31,12 @@ class ConfigController extends Controller
      */
     public function postAction(Request $request, $id)
     {
-        $journal = json_decode($request->getContent());
+        $journal = json_decode($request->getContent(), true);
         $dumper = new Dumper();
 
-        $yaml = $dumper->dump($journal, 100);
+        $yaml = $dumper->dump(['cards' => $journal], 100);
         file_put_contents($this->container->getParameter('kernel.root_dir') . '/journals/config/' . $id . '.yml', $yaml);
 
-        return new JsonResponse();
+        return new JsonResponse($journal);
     }
 }

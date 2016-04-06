@@ -2,7 +2,7 @@ services:
     journal.registry.card:
         class: Application\Domain\CardRegistry
 
-    journal.card.header.thin:
+    journal.card.header_thin:
         class: JournalBundle\Card\HeaderCard
         arguments:
             - 'JournalBundle:Card:header/thin.html.twig'
@@ -12,7 +12,7 @@ services:
         tags:
             - { name: journal.card }
 
-    journal.card.article.quote:
+    journal.card.quote:
         class: JournalBundle\Card\QuoteCard
         arguments:
             - 'JournalBundle:Card:article/quote.html.twig'
@@ -22,7 +22,7 @@ services:
         tags:
             - { name: journal.card }
 
-    journal.card.article.weather:
+    journal.card.weather:
         class: JournalBundle\Card\WeatherCard
         arguments:
             - 'JournalBundle:Card:article/weather.html.twig'
@@ -32,7 +32,7 @@ services:
         tags:
             - { name: journal.card }
 
-    journal.card.article.sudoku:
+    journal.card.sudoku:
         class: JournalBundle\Card\SudokuCard
         arguments:
             - 'JournalBundle:Card:article/sudoku.html.twig'
@@ -42,7 +42,7 @@ services:
         tags:
             - { name: journal.card }
 
-    journal.card.article.instagram:
+    journal.card.instagram:
         class: JournalBundle\Card\InstagramCard
         arguments:
             - 'JournalBundle:Card:article/instagram.html.twig'
@@ -52,7 +52,7 @@ services:
         tags:
             - { name: journal.card }
 
-    journal.card.article.flickr:
+    journal.card.flickr:
         class: JournalBundle\Card\FlickrCard
         arguments:
             - 'JournalBundle:Card:article/flickr.html.twig'

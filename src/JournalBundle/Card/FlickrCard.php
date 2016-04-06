@@ -11,7 +11,7 @@ use Symfony\Component\DomCrawler\Crawler;
 class FlickrCard extends BaseCard
 {
     const API_KEY  = 'ac106666edbf68e3d9b0f4869d7ded64';
-    const FEED_URL = 'https://api.flickr.com/services/feeds/photos_friends.gne?user_id=128809835@N06&format=rss2';
+    const FEED_URL = 'https://api.flickr.com/services/feeds/photos_friends.gne';
     const API_URL  = 'https://api.flickr.com/services/rest/';
 
     const FIND_BY_USERNAME_METHOD = 'flickr.people.findByUsername';
@@ -28,7 +28,7 @@ class FlickrCard extends BaseCard
     {
         return array_replace_recursive(
             $this->data,
-            $this->getPictureContent('ossdoubleonesix')
+            $this->getPictureContent($context['username'])
         );
     }
 

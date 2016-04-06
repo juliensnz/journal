@@ -16,9 +16,9 @@ class HeaderCard extends BaseCard
             $this->data,
             [
                 'date'     => new \DateTime(),
-                'company'  => 'Akeneo',
-                'name'     => 'Julien Sanchez',
-                'location' => 'Nantes'
+                'company'  => $context['company'],
+                'name'     => $context['name'],
+                'location' => $context['location']
             ]
         );
     }

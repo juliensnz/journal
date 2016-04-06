@@ -46,13 +46,20 @@ class HtmlJournalRenderer implements JournalRendererInterface
     {
         $cards = $this->cardRegistry->getCards();
 
-        foreach ($cards as $code => $card) {
-            $cardPosition[$card['position']] = $code;
+        foreach ($options['cards'] as $code => $card) {
+            $sortedCards[$card['position']] = [
+                'code'    => $code,
+                'card'    => $cards[$code],
+                'options' => $card
+            ];
         }
 
-        $cards = array_map(function ($code, $card) use ($options) {
-            return $this->cardRenderer->render($card, isset($options[$code]) ? $options[$code] : []);
-        }, $cardPosition, $cards);
+        $cards = array_map(function ($card) {
+            return $this->cardRenderer->render(
+                $card['card'],
+                $card['options']
+            );
+        }, $sortedCards);
 
         return $this->templating->render($this->template, ['cards' => $cards]);
     }

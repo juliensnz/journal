@@ -21,9 +21,9 @@ class CardController extends Controller
         $cardRegistry = $this->container->get('journal.registry.card');
 
         $cards = $cardRegistry->getCards();
-        $cards = array_map(function ($card) {
-            return $card->getProperties();
-        }, $cards);
+        $cards = array_map(function ($card, $code) {
+            return array_merge($card->getProperties(), ['code' => $code]);
+        }, $cards, array_keys($cards));
 
         return new JsonResponse(array_values($cards));
     }
