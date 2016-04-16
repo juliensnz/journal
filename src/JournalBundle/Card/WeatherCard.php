@@ -3,21 +3,24 @@
 namespace JournalBundle\Card;
 
 use GuzzleHttp\Client;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Weather card
  */
 class WeatherCard extends BaseCard
 {
-    const API_URL = 'http://api.openweathermap.org/data/2.5/forecast?q=Nantes,fr&mode=json&appid=8c3d7e8846fbfccf9e9a15ae94481796&units=metric';
+    const API_URL = 'http://api.openweathermap.org/data/2.5/forecast?q=%s,fr&mode=json&appid=8c3d7e8846fbfccf9e9a15ae94481796&units=metric';
 
     /**
      * {@inheritdoc}
      */
-    public function getData(array $context = [])
+    public function getData(array $options = [])
     {
+        $options = $this->configureOptions($options);
+
         $client = new Client();
-        $response = json_decode($client->get(static::API_URL)->getBody(), true);
+        $response = json_decode($client->get(sprintf(static::API_URL, $options['location']))->getBody(), true);
 
         $weather = [];
         foreach ($response['list'] as $forecast) {
@@ -34,5 +37,23 @@ class WeatherCard extends BaseCard
                 'weather' => $weather
             ]
         );
+    }
+
+    /**
+     * Configure the default options
+     *
+     * @param  array  $options
+     *
+     * @return array
+     */
+    protected function configureOptions(array $options)
+    {
+        $resolver = new OptionsResolver();
+        $resolver->setRequired('position');
+        $resolver->setDefaults([
+            'location'  => 'Nantes'
+        ]);
+
+        return $resolver->resolve($options);
     }
 }

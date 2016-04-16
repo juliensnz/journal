@@ -2,13 +2,14 @@
 
 namespace AppBundle\Command;
 
+use Printer\Printer;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class GenerateCommand extends ContainerAwareCommand
+class PrintCommand extends ContainerAwareCommand
 {
     protected function configure()
     {
@@ -52,16 +53,23 @@ class GenerateCommand extends ContainerAwareCommand
         );
         exec($convertCommand);
 
-        exec(sprintf(
-            'python %s/Resources/python/print.py %s',
-            $this->getContainer()->getParameter('kernel.root_dir'),
-            $uri
-        ));
+        $this->printImage($uri);
 
         if ($input->getOption('dry-run')) {
 
         }
 
         $output->writeln('Finished !');
+    }
+
+    protected function printImage($uri)
+    {
+        $image = new Imagick($uri);
+        $printer = new Printer(['device' => '/dev/ttyAMA0', 'baudrate' => 19200]);
+        $printer->wake();
+        $printer->printImage($image);
+        $printer->feed(3);
+        $printer->sleep();
+        $printer->setDefault();
     }
 }

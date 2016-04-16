@@ -55,11 +55,17 @@ class HtmlJournalRenderer implements JournalRendererInterface
         }
 
         $cards = array_map(function ($card) {
+            if (!$card['card']->isVisible()) {
+                return null;
+            }
+
             return $this->cardRenderer->render(
                 $card['card'],
                 $card['options']
             );
         }, $sortedCards);
+
+        $cards = array_filter($cards);
 
         return $this->templating->render($this->template, ['cards' => $cards]);
     }

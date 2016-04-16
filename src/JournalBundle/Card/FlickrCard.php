@@ -4,6 +4,7 @@ namespace JournalBundle\Card;
 
 use Goutte\Client;
 use Symfony\Component\DomCrawler\Crawler;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Flickr card
@@ -11,7 +12,8 @@ use Symfony\Component\DomCrawler\Crawler;
 class FlickrCard extends BaseCard
 {
     const API_KEY  = 'ac106666edbf68e3d9b0f4869d7ded64';
-    const FEED_URL = 'https://api.flickr.com/services/feeds/photos_friends.gne';
+    const FRIEND_FEED_URL = 'https://api.flickr.com/services/feeds/photos_friends.gne';
+    const USER_FEED_URL = 'https://api.flickr.com/services/feeds/photos_public.gne';
     const API_URL  = 'https://api.flickr.com/services/rest/';
 
     const FIND_BY_USERNAME_METHOD = 'flickr.people.findByUsername';
@@ -24,24 +26,35 @@ class FlickrCard extends BaseCard
     /**
      * {@inheritdoc}
      */
-    public function getData(array $context = [])
+    public function getData(array $options = [])
     {
+        $options = $this->configureOptions($options);
+
         return array_replace_recursive(
             $this->data,
-            $this->getPictureContent($context['username'])
+            $this->getPictureContent($options['username'])
         );
     }
 
     protected function getPictureContent($username)
     {
-        $userId = $this->getUserId($username);
+        if (false === strstr($username, '@')) {
+            $userId = $this->getUserId($username);
+        } else {
+            $userId = $username;
+        }
 
         $client = new Client();
         $client->followRedirects(true);
 
+        // $crawler = $client->request(
+        //     'GET',
+        //     $this->buildGetUrl(self::FRIEND_FEED_URL, ['user_id' => $userId, 'format' => 'rss2'])
+        // );
+
         $crawler = $client->request(
             'GET',
-            $this->buildGetUrl(self::FEED_URL, ['user_id' => $userId, 'format' => 'rss2'])
+            $this->buildGetUrl(self::USER_FEED_URL, ['id' => $userId, 'format' => 'rss2'])
         );
 
         $items = $crawler->filter('item');
@@ -130,5 +143,23 @@ class FlickrCard extends BaseCard
             $pictureInfos['id'],
             $pictureInfos['secret']
         );
+    }
+
+    /**
+     * Configure the default options
+     *
+     * @param  array  $options
+     *
+     * @return array
+     */
+    protected function configureOptions(array $options)
+    {
+        $resolver = new OptionsResolver();
+        $resolver->setRequired('position');
+        $resolver->setDefaults([
+            'username' => '92650625@N06'
+        ]);
+
+        return $resolver->resolve($options);
     }
 }

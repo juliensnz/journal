@@ -21,6 +21,11 @@
                     "classmap": { "Sudoku\\": "." }
                 }
             }
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/juliensnz/Adafruit-PHP-Thermal-Printer-Library.git",
+            "branch": "master"
         }
     ],
     "require": {
@@ -33,7 +38,10 @@
         "sensio/framework-extra-bundle": "~3.0,>=3.0.2",
         "incenteev/composer-parameter-handler": "~2.0",
         "fabpot/goutte": "~2.0",
-        "juliensnz/Sudoku": "dev-master"
+        "juliensnz/Sudoku": "dev-master",
+        "symfony/options-resolver": "^3.0",
+        "kesonno/php-thermal-printer": "dev-master"
+
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"
