@@ -171,6 +171,7 @@ class Adafruit_Thermal(Serial):
 		self.timeoutWait()
 		self.timeoutSet(len(args) * self.byteTime)
 		for arg in args:
+			pprint.pprint(arg)
 			super(Adafruit_Thermal, self).write(chr(arg))
 
 
@@ -444,6 +445,7 @@ class Adafruit_Thermal(Serial):
 
 			for y in range(chunkHeight):
 				for x in range(rowBytesClipped):
+					pprint.pprint(bitmap[i])
 					super(Adafruit_Thermal, self).write(
 					  chr(bitmap[i]))
 					i += 1
