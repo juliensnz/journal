@@ -70,7 +70,7 @@ class PrintCommand extends ContainerAwareCommand
         // $printer->wake();
         $printer->printImage($image);
         // $printer->feed();
-        // $printer->sleep();
-        // $printer->setDefault();
+        $printer->sleep();
+        $printer->setDefault();
     }
 }
