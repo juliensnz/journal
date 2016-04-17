@@ -65,7 +65,7 @@ class PrintCommand extends ContainerAwareCommand
     protected function printImage($uri)
     {
         $image = new \Imagick($uri);
-        $printer = new Printer(['device' => '/dev/ttyAMA0', 'baudrate' => 19200]);
+        $printer = new Printer(['device' => '/dev/tty', 'baudrate' => 19200]);
         $printer->wake();
         $printer->printImage($image);
         $printer->feed(3);
