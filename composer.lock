@@ -781,12 +781,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/juliensnz/Adafruit-PHP-Thermal-Printer-Library.git",
-                "reference": "a3120a2f54f5027efb96b757082f7e4cbaad58e0"
+                "reference": "dd82c8c0166dd78ed173fae2de0ac2acd414e2a2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/juliensnz/Adafruit-PHP-Thermal-Printer-Library/zipball/a3120a2f54f5027efb96b757082f7e4cbaad58e0",
-                "reference": "a3120a2f54f5027efb96b757082f7e4cbaad58e0",
+                "url": "https://api.github.com/repos/juliensnz/Adafruit-PHP-Thermal-Printer-Library/zipball/dd82c8c0166dd78ed173fae2de0ac2acd414e2a2",
+                "reference": "dd82c8c0166dd78ed173fae2de0ac2acd414e2a2",
                 "shasum": ""
             },
             "require": {
@@ -813,7 +813,7 @@
             "support": {
                 "source": "https://github.com/juliensnz/Adafruit-PHP-Thermal-Printer-Library/tree/master"
             },
-            "time": "2016-04-16 21:43:54"
+            "time": "2016-04-16 22:40:03"
         },
         {
             "name": "kriswallsmith/assetic",
