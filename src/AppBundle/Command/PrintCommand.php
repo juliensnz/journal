@@ -67,10 +67,10 @@ class PrintCommand extends ContainerAwareCommand
     {
         $image = new \Imagick($uri);
         $printer = new Printer(['device' => '/dev/ttyAMA0', 'baudrate' => 19200]);
-        $printer->wake();
+        // $printer->wake();
         $printer->printImage($image);
-        $printer->feed(3);
-        $printer->sleep();
-        $printer->setDefault();
+        // $printer->feed();
+        // $printer->sleep();
+        // $printer->setDefault();
     }
 }
