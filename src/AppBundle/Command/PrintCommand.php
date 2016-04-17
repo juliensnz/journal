@@ -53,10 +53,8 @@ class PrintCommand extends ContainerAwareCommand
         );
         exec($convertCommand);
 
-        $this->printImage($uri);
-
-        if ($input->getOption('dry-run')) {
-
+        if (!$input->getOption('dry-run')) {
+            $this->printImage($uri);
         }
 
         $output->writeln('Finished !');
