@@ -36,6 +36,7 @@
 from __future__ import print_function
 from serial import Serial
 import time
+import pprint
 
 class Adafruit_Thermal(Serial):
 
@@ -486,7 +487,8 @@ class Adafruit_Thermal(Serial):
 					bit >>= 1
 				bitmap[n + b] = sum
 
-		self.printBitmap(width, height, bitmap, LaaT)
+		pprint.pprint(bitmap)
+		#self.printBitmap(width, height, bitmap, LaaT)
 
 
 	# Take the printer offline. Print commands sent after this

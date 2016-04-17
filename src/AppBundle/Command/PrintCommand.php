@@ -45,6 +45,7 @@ class PrintCommand extends ContainerAwareCommand
             $uri
         );
         exec($rasterizeCommand);
+        $output->writeln('screenshot done');
 
         $convertCommand = sprintf(
             'convert %s -monochrome %s',
@@ -52,10 +53,12 @@ class PrintCommand extends ContainerAwareCommand
             $uri
         );
         exec($convertCommand);
+        $output->writeln('monochrome done');
 
         if (!$input->getOption('dry-run')) {
             $this->printImage($uri);
         }
+        $output->writeln('printimage done');
 
         $output->writeln('Finished !');
     }
