@@ -39,7 +39,7 @@ class PrintCommand extends ContainerAwareCommand
         $output->writeln($uri);
 
         $rasterizeCommand = sprintf(
-            'phantomjs %s/../rasterize.js http://localhost/journal/%s/print %s',
+            'phantomjs %s/../rasterize.js http://localhost/app.php/journal/%s/render %s',
             $this->getContainer()->getParameter('kernel.root_dir'),
             $input->getArgument('id'),
             $uri
