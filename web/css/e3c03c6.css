@@ -1,6 +1,7 @@
 body {
     padding: 0px;
     margin: 0px;
+    width: 384px;
     font-family: "Helvetica";
 }
 
@@ -12,7 +13,7 @@ body {
 }
 
 .thin-split {
-    background: #555;
+    background: black;
     display: block;
     height: 2px;
     margin-bottom: 2px;

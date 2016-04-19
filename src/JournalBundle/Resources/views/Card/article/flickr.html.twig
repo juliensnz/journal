@@ -2,11 +2,17 @@
     <div class="header">Flickr</div>
     <div class="content">
         <img src="{{ image_url }}" />
-        <h2>{{ title }} {{ views }} views</h2>
     </div>
 </div>
 
 <style>
+    .article-photo .header {
+        text-transform: uppercase;
+        font-family: 'Helvetica Neue', sans-serif;
+        font-weight: 400;
+        text-align: center;
+    }
+
     .article-photo img {
         width: 100%;
     }

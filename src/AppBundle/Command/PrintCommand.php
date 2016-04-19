@@ -48,7 +48,7 @@ class PrintCommand extends ContainerAwareCommand
         $output->writeln('screenshot done');
 
         $convertCommand = sprintf(
-            'convert %s -monochrome %s',
+            'convert %s -monochrome -crop 384x+0+0 %s.png',
             $uri,
             $uri
         );
@@ -67,9 +67,9 @@ class PrintCommand extends ContainerAwareCommand
     {
         $image = new \Imagick($uri);
         $printer = new Printer(['device' => '/dev/ttyAMA0', 'baudrate' => 19200]);
-        // $printer->wake();
+        $printer->wake();
         $printer->printImage($image);
-        // $printer->feed();
+        $printer->feed();
         $printer->sleep();
         $printer->setDefault();
     }

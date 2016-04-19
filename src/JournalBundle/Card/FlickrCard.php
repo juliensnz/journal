@@ -11,13 +11,10 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class FlickrCard extends BaseCard
 {
-    const API_KEY  = 'ac106666edbf68e3d9b0f4869d7ded64';
-    const FRIEND_FEED_URL = 'https://api.flickr.com/services/feeds/photos_friends.gne';
-    const USER_FEED_URL = 'https://api.flickr.com/services/feeds/photos_public.gne';
+    const API_KEY  = '291dc5838e9645cf6d056bc3ea8af49d';
     const API_URL  = 'https://api.flickr.com/services/rest/';
 
     const FIND_BY_USERNAME_METHOD = 'flickr.people.findByUsername';
-    const GET_PHOTOS_INFO_METHOD  = 'flickr.photos.getInfo';
 
     const POPULAR_LIMIT = 1000;
 
@@ -44,54 +41,29 @@ class FlickrCard extends BaseCard
             $userId = $username;
         }
 
-        $client = new Client();
-        $client->followRedirects(true);
+        $pictures = json_decode(file_get_contents($this->buildGetUrl(static::API_URL, [
+            'api_key'        => static::API_KEY,
+            'method'         => 'flickr.people.getPublicPhotos',
+            'user_id'        => $userId,
+            'per_page'       => 1000,
+            'format'         => 'json',
+            'nojsoncallback' => 1
+        ])), true);
 
-        // $crawler = $client->request(
-        //     'GET',
-        //     $this->buildGetUrl(self::FRIEND_FEED_URL, ['user_id' => $userId, 'format' => 'rss2'])
-        // );
+        $photos = $pictures['photos']['photo'];
+        $photo = $photos[array_rand($photos)];
 
-        $crawler = $client->request(
-            'GET',
-            $this->buildGetUrl(self::USER_FEED_URL, ['id' => $userId, 'format' => 'rss2'])
-        );
-
-        $items = $crawler->filter('item');
-
-        $shulledItems = [];
-        foreach ($items as $item) {
-            $shulledItems[] = new Crawler($item);
-        }
-        shuffle($shulledItems);
-
-        $selectedPicture = null;
-        $i = 0;
-        while ($i < count($shulledItems) && null === $selectedPicture) {
-            $pictureId = explode('/', $shulledItems[$i]->filter('guid')->text())[2];
-
-            if ($this->getPictureInfo($pictureId)['views'] > self::POPULAR_LIMIT) {
-                $selectedPicture =  $this->getPictureInfo($pictureId);
-            }
-
-            $i++;
-        }
-
-        return [
-            'image_url' => $this->buildPictureUrl($selectedPicture),
-            'title'     => $selectedPicture['title']['_content'],
-            'views'     => $selectedPicture['views']
-        ];
+        return ['image_url' => $this->buildPictureUrl($photo)];
     }
 
     protected function getUserId($username)
     {
         $response = file_get_contents(
             $this->buildGetUrl(
-                self::API_URL,
+                static::API_URL,
                 [
-                    'method'   => self::FIND_BY_USERNAME_METHOD,
-                    'api_key'  => self::API_KEY,
+                    'method'   => static::FIND_BY_USERNAME_METHOD,
+                    'api_key'  => static::API_KEY,
                     'username' => $username,
                     'format'   => 'json',
                     'nojsoncallback' => 1
@@ -102,27 +74,6 @@ class FlickrCard extends BaseCard
         $response = json_decode($response, true);
 
         return $response['user']['id'];
-    }
-
-    protected function getPictureInfo($pictureId)
-    {
-        $response = file_get_contents(
-            $this->buildGetUrl(
-                self::API_URL,
-                [
-                    'method'   => self::GET_PHOTOS_INFO_METHOD,
-                    'api_key'  => self::API_KEY,
-                    'photo_id' => $pictureId,
-                    'format'   => 'json',
-                    'nojsoncallback' => 1,
-                    'count_faves' => 1
-                ]
-            )
-        );
-
-        $response = json_decode($response, true);
-
-        return $response['photo'];
     }
 
     protected function buildGetUrl($url, array $params = [])
@@ -137,7 +88,7 @@ class FlickrCard extends BaseCard
     protected function buildPictureUrl($pictureInfos)
     {
         return sprintf(
-            self::PICTURE_SCHEME,
+            static::PICTURE_SCHEME,
             $pictureInfos['farm'],
             $pictureInfos['server'],
             $pictureInfos['id'],
