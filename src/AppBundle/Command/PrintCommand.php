@@ -48,7 +48,7 @@ class PrintCommand extends ContainerAwareCommand
         $output->writeln('screenshot done');
 
         $convertCommand = sprintf(
-            'convert %s -monochrome -crop 384x+0+0 %s.png',
+            'convert %s -monochrome -crop 384x+0+0 %s',
             $uri,
             $uri
         );
